@@ -51,26 +51,26 @@ class CLIHandler:
             # Check if vault already exists (T025)
             if self.vault_manager.vault_exists():
                 self.logger.warning("Vault structure already exists. Skipping creation.")
-                print("✓ Vault structure already exists")
+                print("[OK] Vault structure already exists")
                 print(f"  Location: {self.vault_manager.vault_path}")
                 return 0
 
             # Create vault structure
             if self.vault_manager.create_vault_structure():
                 self.logger.info("Vault structure created successfully")
-                print("✓ Vault structure created successfully")
+                print("[OK] Vault structure created successfully")
                 print(f"  Location: {self.vault_manager.vault_path}")
                 print("  Directories: Inbox, Needs_Action, Done, Plans, Logs")
                 print("  Files: Dashboard.md, Company_Handbook.md")
                 return 0
             else:
                 self.logger.error("Failed to create vault structure")
-                print("✗ Failed to create vault structure")
+                print("[ERROR] Failed to create vault structure")
                 return 1
 
         except Exception as e:
             self.logger.error(f"Vault setup failed: {str(e)}")
-            print(f"✗ Error: {str(e)}")
+            print(f"[ERROR] {str(e)}")
             return 1
 
     def start_watcher(self) -> int:
@@ -86,7 +86,7 @@ class CLIHandler:
             # Validate vault exists before starting watcher
             if not self.vault_manager.vault_exists():
                 self.logger.error("Vault structure does not exist. Run 'setup' command first.")
-                print("✗ Error: Vault structure does not exist.")
+                print("[ERROR] Vault structure does not exist.")
                 print("  Run 'python main.py setup' first to initialize the vault.")
                 return 1
 
@@ -99,10 +99,10 @@ class CLIHandler:
 
             if not self.watcher_service.start():
                 self.logger.error("Failed to start watcher service")
-                print("✗ Error: Failed to start watcher service")
+                print("[ERROR] Failed to start watcher service")
                 return 1
 
-            print("✓ File system watcher started")
+            print("[OK] File system watcher started")
             print(f"  Watching: {self.settings.WATCHED_FOLDER}")
             print("  Press Ctrl+C to stop")
 
@@ -116,11 +116,11 @@ class CLIHandler:
 
         except KeyboardInterrupt:
             self.logger.info("Watcher stopped by user")
-            print("\n✓ Watcher stopped gracefully")
+            print("\n[OK] Watcher stopped gracefully")
             return 0
         except Exception as e:
             self.logger.error(f"Watcher failed: {str(e)}")
-            print(f"✗ Error: {str(e)}")
+            print(f"[ERROR] {str(e)}")
             return 1
 
 
