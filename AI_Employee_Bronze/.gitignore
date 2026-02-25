@@ -48,9 +48,9 @@ env/
 .env.production.local
 .env.staging.local
 .env.testing.local
-.env.example
-.env.sample
-.env.template
+# .env.example is committed as a template
+# .env.sample
+# .env.template
 
 # Logs
 logs/
