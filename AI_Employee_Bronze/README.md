@@ -1,10 +1,11 @@
 # Bronze Tier AI Employee
 
-A local-first AI employee system that monitors a folder for new tasks, processes them using an AI CLI agent, and maintains an Obsidian vault as its brain and dashboard. The system operates entirely offline on a Windows laptop with Ubuntu WSL.
+A local-first AI employee system that monitors a folder for new tasks, processes them using an AI CLI agent, and maintains an Obsidian vault as its brain and dashboard. The system operates entirely offline on Windows, Linux, or macOS.
 
 ## Features
 
 - **Local-first**: Runs entirely offline with no cloud dependencies
+- **Cross-platform**: Works on Windows, WSL, Linux, and macOS
 - **File monitoring**: Watches the Inbox folder for new files using watchdog
 - **Task processing**: Creates structured action files in Needs_Action with YAML frontmatter
 - **Vault-based**: Uses Obsidian vault structure as the single source of truth
@@ -14,9 +15,8 @@ A local-first AI employee system that monitors a folder for new tasks, processes
 
 ## Prerequisites
 
-- Windows 11 with Ubuntu WSL installed
-- Python 3.12+ available in WSL
-- uv package manager installed
+- Python 3.12+
+- uv package manager
 - Access to LM Studio running on localhost:1234 for local AI model (optional)
 
 ## Installation
@@ -33,7 +33,13 @@ git checkout feature/bronze-vault-setup
 
 ```bash
 uv venv
-source .venv/bin/activate  # On Windows WSL
+# On Windows (PowerShell)
+.venv\Scripts\Activate.ps1
+# On Windows (CMD)
+.venv\Scripts\activate
+# On Linux/macOS/WSL
+source .venv/bin/activate
+
 uv pip install -e .
 ```
 
@@ -41,17 +47,36 @@ uv pip install -e .
 
 Create a `.env` file in the project root (copy from `.env.example`):
 
+**Windows (PowerShell):**
+```powershell
+Copy-Item .env.example .env
+```
+
+**Linux/macOS/WSL:**
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env` with your settings:
+Edit `.env` with your settings (see examples below):
 
+**Windows:**
 ```
-VAULT_PATH=~/AI_Employee_Vault
-WATCHED_FOLDER=~/AI_Employee_Vault/Inbox
-LM_STUDIO_HOST=localhost
-LM_STUDIO_PORT=1234
+VAULT_PATH=C:\Users\YourUsername\AI_Employee_Vault
+WATCHED_FOLDER=C:\Users\YourUsername\AI_Employee_Vault\Inbox
+LOG_LEVEL=INFO
+```
+
+**Linux/macOS/WSL:**
+```
+VAULT_PATH=/home/username/AI_Employee_Vault
+WATCHED_FOLDER=/home/username/AI_Employee_Vault/Inbox
+LOG_LEVEL=INFO
+```
+
+**macOS:**
+```
+VAULT_PATH=/Users/username/AI_Employee_Vault
+WATCHED_FOLDER=/Users/username/AI_Employee_Vault/Inbox
 LOG_LEVEL=INFO
 ```
 

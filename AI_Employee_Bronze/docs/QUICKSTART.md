@@ -6,10 +6,11 @@ Get your AI Employee up and running in 5 minutes!
 
 Before starting, ensure you have:
 
-- [ ] Windows 11 with Ubuntu WSL installed
-- [ ] Python 3.12+ available in WSL
+- [ ] Python 3.12+ installed
 - [ ] uv package manager installed
 - [ ] Git installed
+
+**Supported Platforms:** Windows, Windows WSL, Linux, macOS
 
 ## Step 1: Install Dependencies (2 minutes)
 
@@ -21,6 +22,13 @@ cd /path/to/AI_Employee_Bronze
 uv venv
 
 # Activate virtual environment
+# Windows (PowerShell):
+.venv\Scripts\Activate.ps1
+
+# Windows (CMD):
+.venv\Scripts\activate
+
+# Linux/macOS/WSL:
 source .venv/bin/activate
 
 # Install project dependencies
@@ -36,18 +44,33 @@ python -c "from src.ai_employee.core.vault import VaultManager; print('✓ Insta
 
 ```bash
 # Copy the example environment file
+# Windows (PowerShell):
+Copy-Item .env.example .env
+
+# Linux/macOS/WSL:
 cp .env.example .env
-
-# Edit with your settings (optional - defaults work fine)
-nano .env  # or use your preferred editor
 ```
 
-**Default settings (already configured):**
+Edit `.env` with your path (use absolute paths):
+
+**Windows:**
 ```
-VAULT_PATH=~/AI_Employee_Vault
-WATCHED_FOLDER=~/AI_Employee_Vault/Inbox
-LM_STUDIO_HOST=localhost
-LM_STUDIO_PORT=1234
+VAULT_PATH=C:\Users\YourUsername\AI_Employee_Vault
+WATCHED_FOLDER=C:\Users\YourUsername\AI_Employee_Vault\Inbox
+LOG_LEVEL=INFO
+```
+
+**Linux/WSL:**
+```
+VAULT_PATH=/home/username/AI_Employee_Vault
+WATCHED_FOLDER=/home/username/AI_Employee_Vault/Inbox
+LOG_LEVEL=INFO
+```
+
+**macOS:**
+```
+VAULT_PATH=/Users/username/AI_Employee_Vault
+WATCHED_FOLDER=/Users/username/AI_Employee_Vault/Inbox
 LOG_LEVEL=INFO
 ```
 
