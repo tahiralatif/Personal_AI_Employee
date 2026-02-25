@@ -1,0 +1,145 @@
+# API Contract for Bronze Tier AI Employee
+
+## Overview
+This contract defines the interfaces for the local AI employee system that monitors a folder for new tasks and processes them using an AI CLI agent.
+
+## File System Events API
+
+### File Detection Event
+**Event**: `file.detected`
+**Trigger**: When a new file is detected in the Inbox folder
+
+**Payload**:
+```json
+{
+  "event_type": "file.detected",
+  "timestamp": "2026-02-24T10:00:00Z",
+  "file_path": "/home/user/AI_Employee_Vault/Inbox/document.pdf",
+  "file_name": "document.pdf",
+  "file_size": 1024000,
+  "file_extension": "pdf"
+}
+```
+
+### File Processing Request
+**Event**: `file.process.request`
+**Trigger**: When a file is ready to be converted to an action item
+
+**Payload**:
+```json
+{
+  "event_type": "file.process.request",
+  "file_path": "/home/user/AI_Employee_Vault/Inbox/document.pdf",
+  "target_folder": "/home/user/AI_Employee_Vault/Needs_Action/",
+  "priority": "medium",
+  "metadata": {
+    "original_name": "document.pdf",
+    "received_timestamp": "2026-02-24T10:00:00Z",
+    "file_size": 1024000
+  }
+}
+```
+
+### Action File Created
+**Event**: `action.created`
+**Trigger**: When a structured action file is created in Needs_Action
+
+**Payload**:
+```json
+{
+  "event_type": "action.created",
+  "timestamp": "2026-02-24T10:00:05Z",
+  "action_file_path": "/home/user/AI_Employee_Vault/Needs_Action/document_action.md",
+  "original_file_path": "/home/user/AI_Employee_Vault/Inbox/document.pdf",
+  "yaml_frontmatter": {
+    "type": "document_review",
+    "original_name": "document.pdf",
+    "received": "2026-02-24T10:00:00Z",
+    "priority": "medium",
+    "status": "pending"
+  }
+}
+```
+
+## System Control API
+
+### Start File Watcher
+**Endpoint**: `POST /api/watcher/start`
+**Description**: Starts monitoring the configured folder for new files
+
+**Request**:
+```json
+{
+  "folder_path": "/home/user/AI_Employee_Vault/Inbox",
+  "recursive": false
+}
+```
+
+**Response**:
+```json
+{
+  "status": "started",
+  "watcher_id": "watcher_12345",
+  "folder_path": "/home/user/AI_Employee_Vault/Inbox",
+  "started_at": "2026-02-24T10:00:00Z"
+}
+```
+
+### Stop File Watcher
+**Endpoint**: `POST /api/watcher/stop`
+**Description**: Stops the file watcher
+
+**Request**:
+```json
+{
+  "watcher_id": "watcher_12345"
+}
+```
+
+**Response**:
+```json
+{
+  "status": "stopped",
+  "watcher_id": "watcher_12345",
+  "stopped_at": "2026-02-24T10:00:00Z"
+}
+```
+
+### Get System Status
+**Endpoint**: `GET /api/status`
+**Description**: Gets the current status of the system
+
+**Response**:
+```json
+{
+  "status": "running",
+  "vault_path": "/home/user/AI_Employee_Vault",
+  "inbox_count": 2,
+  "needs_action_count": 5,
+  "done_count": 42,
+  "last_activity": "2026-02-24T09:45:22Z",
+  "uptime_seconds": 3600
+}
+```
+
+## Error Handling
+
+### Standard Error Response
+All API endpoints return errors in the following format:
+
+```json
+{
+  "error": {
+    "code": "ERROR_CODE",
+    "message": "Descriptive error message",
+    "details": {}
+  }
+}
+```
+
+### Common Error Codes
+- `FILE_TOO_LARGE`: File exceeds maximum allowed size (100MB)
+- `INVALID_FILE_TYPE`: File type not supported
+- `PERMISSION_DENIED`: Insufficient permissions to access file/folder
+- `VAULT_NOT_INITIALIZED`: Vault structure not properly set up
+- `WATCHER_ALREADY_RUNNING`: Attempt to start a watcher that's already running

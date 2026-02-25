@@ -1,0 +1,14 @@
+[project]
+name = "ai-employee-bronze"
+version = "0.1.0"
+description = "Bronze Tier AI Employee - Local-first AI assistant that monitors folders and processes tasks using AI CLI agent"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "watchdog>=4.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
