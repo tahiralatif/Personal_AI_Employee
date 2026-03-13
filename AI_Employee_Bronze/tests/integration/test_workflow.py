@@ -59,7 +59,7 @@ class TestVaultSetupWorkflow(unittest.TestCase):
         stats = vault_manager.get_vault_stats()
 
         self.assertTrue(stats['exists'])
-        self.assertEqual(len(stats['directories']), 5)  # 5 required dirs
+        self.assertEqual(len(stats['directories']), 11)  # 11 required dirs (updated for Qwen integration)
         self.assertTrue(stats['files']['Dashboard.md'])
         self.assertTrue(stats['files']['Company_Handbook.md'])
 
@@ -108,8 +108,8 @@ class TestDashboardIntegration(unittest.TestCase):
 
         # Verify dashboard content
         content = dm.dashboard_path.read_text()
-        self.assertIn("Pending Tasks: 2", content)
-        self.assertIn("Completed Today: 1", content)
+        self.assertIn("**Pending Tasks:** 2", content)
+        self.assertIn("**Completed Today:** 1", content)
 
 
 class TestHandbookIntegration(unittest.TestCase):

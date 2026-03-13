@@ -1,0 +1,28 @@
+# pytest configuration for Gold Tier tests
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-v --tb=short"
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["src/ai_employee_gold"]
+omit = [
+    "*/tests/*",
+    "*/__init__.py",
+    "*/main.py"
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:"
+]
+show_missing = true
+fail_under = 90

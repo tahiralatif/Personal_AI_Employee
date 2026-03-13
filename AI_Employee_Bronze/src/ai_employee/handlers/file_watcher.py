@@ -54,7 +54,7 @@ class FileDropHandler(FileSystemEventHandler):
         self,
         vault_path: str,
         settings: Settings,
-        logger: VaultLogger
+        logger: Optional[VaultLogger] = None
     ) -> None:
         """
         Initialize the FileDropHandler.
@@ -62,12 +62,12 @@ class FileDropHandler(FileSystemEventHandler):
         Args:
             vault_path: Path to the vault directory
             settings: Application settings
-            logger: Application logger
+            logger: Application logger (optional, will use get_logger() if None)
         """
         super().__init__()
         self.vault_path = Path(vault_path).expanduser()
         self.settings = settings
-        self.logger = logger
+        self.logger = logger if logger is not None else get_logger()
 
         # Define folder paths
         self.inbox_path = self.vault_path / "Inbox"

@@ -1,0 +1,14 @@
+{
+  "local_storage": {
+    "WAUnknownID": "\"unknown-557930823\"",
+    "WANoiseInfo": "{\"privKey\":\"yrA1vmm02uK+uN2yWydaRJM3ojCxPxvAQ/vBnP6A/JcVb7ouQu0E3A8PHSv1L0Qt\",\"pubKey\":\"vWcoFsZOtkZyYGuBo/pJswYDr6h8oyy4VsDlHQTfvIMr/yuyHUaMiGQMqM/LwDlV\",\"recoveryToken\":\"N3wganrH8+8tzbtcZ0ZBORm25blsfI8zzwa5URzkHXM=\"}",
+    "WALangPhonePref": "\"en_GB\"",
+    "WAWebEncKeySalt": "\"5iV4pvfpBx0OEm51sOJUnNAo54qYxZYzsZbBo1znbIWLehnx05IN5rks9MBMNMrzq1vqcHhS/5PyyVDej0wCfq8iHEeuPklbIO/V3We1JKL1KNa4EgjhblZNcs6Rvbn/s8hp1mMjZL67R4lKNhh+bdCB9E8wGJVlmjezGNgk9VA=\"",
+    "WebEncKeySalt": "\"5iV4pvfpBx0OEm51sOJUnNAo54qYxZYzsZbBo1znbIWLehnx05IN5rks9MBMNMrzq1vqcHhS/5PyyVDej0wCfq8iHEeuPklbIO/V3We1JKL1KNa4EgjhblZNcs6Rvbn/s8hp1mMjZL67R4lKNhh+bdCB9E8wGJVlmjezGNgk9VA=\"",
+    "Session": "l6wvso:1772259269889",
+    "WANoiseInfoIv": "[\"EUYUWsdzvXbB0pMGwTfY7Q==\",\"Ep1ttLsKx1jYZy4SDeHT6A==\",\"0Io4+AkzMhsi0kL6JLAGGg==\",\"1z04j/Hqs8j6w48UZk08fg==\"]",
+    "banzai:last_storage_flush": "1772259245026.985",
+    "whatsapp-mutex": "\"x930915253:init_1772259240986\""
+  },
+  "timestamp": "2026-02-28T11:14:07.633736"
+}
