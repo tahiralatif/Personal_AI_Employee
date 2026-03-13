@@ -11,10 +11,10 @@ import asyncio
 from datetime import datetime
 from pathlib import Path
 
+# Import agents that exist
 from ai_employee_gold.core.vault_manager import vault
 from ai_employee_gold.core.audit_logger import audit_logger
 from ai_employee_gold.core.error_recovery import health_monitor
-from ai_employee_gold.agents.odoo_agent import odoo_agent
 from ai_employee_gold.agents.facebook_agent import facebook_agent
 from ai_employee_gold.agents.instagram_agent import instagram_agent
 from ai_employee_gold.agents.twitter_agent import twitter_agent
