@@ -5,7 +5,7 @@ The agent can create invoices, record payments, track expenses, and generate rep
 
 Agent Skills:
 1. create_invoice - Create invoice in Odoo
-2. record_payment - Record payment against invoice  
+2. record_payment - Record payment against invoice
 3. create_expense - Create expense record
 4. get_financial_summary - Get financial summary for period
 5. get_outstanding_invoices - Get list of outstanding invoices
@@ -18,11 +18,11 @@ from typing import Dict, List, Any, Optional
 from datetime import datetime
 from pathlib import Path
 
-from .mcp.odoo_mcp import odoo_mcp_server
-from .core.vault import vault
-from .core.audit_logger import audit_logger
-from .core.error_recovery import health_monitor, HealthStatus
-from .config.settings import settings
+from ..mcp.odoo_mcp import odoo_mcp_server
+from ..core.vault import vault
+from ..core.audit_logger import audit_logger
+from ..core.error_recovery import health_monitor, HealthStatus
+from ..config.settings import settings
 
 logger = logging.getLogger(__name__)
 
