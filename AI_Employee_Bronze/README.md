@@ -1,84 +1,76 @@
 # Bronze Tier AI Employee
 
-A local-first AI employee system that monitors a folder for new tasks, processes them using an AI CLI agent, and maintains an Obsidian vault as its brain and dashboard. The system operates entirely offline on Windows, Linux, or macOS.
+A local-first AI employee system that monitors a folder for new tasks, processes them using **Qwen AI** as the brain, and maintains an Obsidian vault as its memory and dashboard. The system operates entirely offline on Windows, Linux, or macOS.
 
-## Features
+## 🎯 Features
+
+### Core Features
 
 - **Local-first**: Runs entirely offline with no cloud dependencies
 - **Cross-platform**: Works on Windows, WSL, Linux, and macOS
 - **File monitoring**: Watches the Inbox folder for new files using watchdog
-- **Task processing**: Creates structured action files in Needs_Action with YAML frontmatter
+- **Qwen AI Brain**: Processes tasks using Qwen CLI (`qwen --cwd`)
+- **Ralph Wiggum Loop**: Persistent task processing until complete
 - **Vault-based**: Uses Obsidian vault structure as the single source of truth
 - **Secure**: No credentials stored in code or committed to Git
 - **Real-time dashboard**: Tracks pending, completed, and inbox task counts
 - **Company handbook**: Built-in rules and guidelines for AI agent behavior
+- **Human-in-the-Loop**: Approval workflow for sensitive actions
+
+### AI Brain Configuration
+
+- **Model**: Qwen (any version accessible via CLI)
+- **Interface**: Command-line (`qwen --cwd <path> --prompt <prompt>`)
+- **Privacy**: All data stays on your machine
+- **No Cloud**: Works completely offline
 
 ## Prerequisites
 
-- Python 3.12+
-- uv package manager
-- Access to LM Studio running on localhost:1234 for local AI model (optional)
+### Required Software
 
-## Installation
+| Component | Version | Purpose |
+|-----------|---------|---------|
+| **Python** | 3.12+ | Core runtime |
+| **uv** | Latest | Package manager |
+| **Qwen** | Any | AI brain (via CLI) |
 
-### Step 1: Clone the Repository
+### Installing Qwen
 
+Qwen can be installed via various methods:
+
+**Option 1: Using Ollama (Recommended)**
 ```bash
-git clone https://github.com/tahiralatif/Personal_AI_Employee.git
-cd Personal_AI_Employee
-git checkout feature/bronze-vault-setup
+# Install Ollama: https://ollama.ai
+ollama pull qwen2.5-coder:32b
+
+# Qwen is now available via CLI
 ```
 
-### Step 2: Install Dependencies
-
+**Option 2: Using vLLM**
 ```bash
-uv venv
-# On Windows (PowerShell)
-.venv\Scripts\Activate.ps1
-# On Windows (CMD)
-.venv\Scripts\activate
-# On Linux/macOS/WSL
-source .venv/bin/activate
-
-uv pip install -e .
+pip install vllm
+# Run Qwen server
 ```
 
-### Step 3: Configure Environment
-
-Create a `.env` file in the project root (copy from `.env.example`):
-
-**Windows (PowerShell):**
-```powershell
-Copy-Item .env.example .env
-```
-
-**Linux/macOS/WSL:**
+**Option 3: Using LM Studio (GUI)**
 ```bash
-cp .env.example .env
+# Download from https://lmstudio.ai
+# Download Qwen model and start CLI
 ```
 
-Edit `.env` with your settings (see examples below):
-
-**Windows:**
-```
-VAULT_PATH=C:\Users\YourUsername\AI_Employee_Vault
-WATCHED_FOLDER=C:\Users\YourUsername\AI_Employee_Vault\Inbox
-LOG_LEVEL=INFO
+**Verify Qwen Installation:**
+```bash
+qwen --version
+# or
+qwen --help
 ```
 
-**Linux/macOS/WSL:**
-```
-VAULT_PATH=/home/username/AI_Employee_Vault
-WATCHED_FOLDER=/home/username/AI_Employee_Vault/Inbox
-LOG_LEVEL=INFO
-```
+### Optional Software
 
-**macOS:**
-```
-VAULT_PATH=/Users/username/AI_Employee_Vault
-WATCHED_FOLDER=/Users/username/AI_Employee_Vault/Inbox
-LOG_LEVEL=INFO
-```
+| Component | Purpose |
+|-----------|---------|
+| **Obsidian** | Vault GUI and dashboard |
+| **Git** | Version control |
 
 ## Quick Start
 

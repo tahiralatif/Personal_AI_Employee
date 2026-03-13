@@ -1,0 +1,82 @@
+# Silver Tier AI Employee - .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment Variables (NEVER commit these)
+.env
+.env.local
+.env.*.local
+
+# Credentials
+credentials.json
+token.json
+client_secret.json
+*.pem
+*.key
+
+# Logs
+*.log
+Logs/
+
+# Vault Data (user's personal data)
+AI_Employee_Vault/
+Inbox/
+Needs_Action/
+Done/
+Plans/
+Quarantine/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+coverage.xml
+*.cover
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Ruff
+.ruff_cache/
+.env

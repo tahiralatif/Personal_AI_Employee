@@ -34,10 +34,8 @@ class Settings:
         self.VAULT_PATH = self._get_env_var('VAULT_PATH', '~/AI_Employee_Vault')
         self.WATCHED_FOLDER = self._get_env_var('WATCHED_FOLDER', f'{self.VAULT_PATH}/Inbox')
 
-        # LM Studio settings (for local AI model)
-        self.LM_STUDIO_HOST = self._get_env_var('LM_STUDIO_HOST', 'localhost')
-        self.LM_STUDIO_PORT = int(self._get_env_var('LM_STUDIO_PORT', '1234'))
-        self.LM_STUDIO_URL = f"http://{self.LM_STUDIO_HOST}:{self.LM_STUDIO_PORT}/v1"
+        # Qwen AI settings
+        self.QWEN_COMMAND = self._get_env_var('QWEN_COMMAND', 'qwen')
 
         # Logging settings
         self.LOG_LEVEL = self._get_env_var('LOG_LEVEL', 'INFO')
@@ -75,9 +73,9 @@ class Settings:
         if not watched_folder.is_absolute():
             raise ValueError(f"WATCHED_FOLDER must be an absolute path: {self.WATCHED_FOLDER}")
 
-        # Validate port number
-        if not (1 <= self.LM_STUDIO_PORT <= 65535):
-            raise ValueError(f"LM_STUDIO_PORT must be between 1 and 65535: {self.LM_STUDIO_PORT}")
+        # Validate Qwen command
+        if not self.QWEN_COMMAND or not isinstance(self.QWEN_COMMAND, str):
+            raise ValueError(f"QWEN_COMMAND must be a valid command: {self.QWEN_COMMAND}")
 
         # Validate log level
         valid_log_levels = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
@@ -114,8 +112,7 @@ class Settings:
         """
         return (
             f"Settings(VAULT_PATH={self.VAULT_PATH}, "
-            f"LM_STUDIO_HOST={self.LM_STUDIO_HOST}, "
-            f"LM_STUDIO_PORT={self.LM_STUDIO_PORT}, "
+            f"QWEN_COMMAND={self.QWEN_COMMAND}, "
             f"LOG_LEVEL={self.LOG_LEVEL})"
         )
 
