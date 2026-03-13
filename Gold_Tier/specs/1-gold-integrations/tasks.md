@@ -356,9 +356,13 @@ class ComponentSkills:
 - **Completed**: 2026-03-13
 - **Evidence**: `facebook_integration.py` (172 lines) with full Facebook Graph API integration
 
-**Subtasks**:
-- [ ] Set up Facebook Developer App
-- [ ] Implement Graph API client
+**Agent Skills**:
+- `facebook.verify_connection()` - Verify Facebook API connection
+- `facebook.post_to_facebook(message, image_url)` - Post to Facebook (text/photo)
+- `facebook.get_page_posts(limit)` - Get recent posts
+- `facebook.get_post_engagement(post_id)` - Get engagement metrics (likes, comments, shares)
+- `facebook.get_page_insights(metric, since, until)` - Get page analytics
+- `facebook.create_facebook_ad_campaign(campaign_data)` - Create ad campaigns
 - [ ] Implement page post creation (text, image, video, link)
 - [ ] Implement post scheduling
 - [ ] Implement engagement monitoring (likes, comments, shares)
